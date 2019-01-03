@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "8080:80"
+        volumes:
+            - ./code:/code
+            - ./conf:/etc/nginx/conf.d
+        links:
+            - php
+            - mysql
+    php:
+        build:
+          context: ./php-image
+          dockerfile: Dockerfile
+        working_dir: /code
+        volumes:
+            - ./code:/code
+        links:
+            - mysql
+    mysql:
+        image: mariadb:latest
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpassword
+            MYSQL_DATABASE: dbname
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
