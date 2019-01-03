@@ -16,6 +16,8 @@ services:
           context: ./php-image
           dockerfile: Dockerfile
         working_dir: /code
+        ports:
+            - "1337:1337"
         volumes:
             - ./code:/code
         links:

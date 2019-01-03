@@ -14,4 +14,6 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
  && composer --ansi --version --no-interaction \
  && rm -rf /tmp/* /tmp/.htaccess
 
+EXPOSE 1337
+
 RUN usermod -u 1000 www-data

@@ -1,5 +1,8 @@
 # Web Socket Configuration
 gos_web_socket:
     server:
-        port: 8080        #The port the socket server will listen on
-        host: 127.0.0.1   #The host ip to bind to
+        port: 1337        #The port the socket server will listen on
+        host: 172.22.0.3  #The host ip to bind to
+        router:
+            resources:
+                - 'ws_routes.yaml'
