@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <script src="{{ asset('bundles/goswebsocket/js/vendor/autobahn.min.js') }}"></script>
+    <script src="{{ asset('bundles/goswebsocket/js/gos_web_socket_client.js') }}"></script>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'src/Controller/ChatController.php'|file_link(0) }}">src/Controller/ChatController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'templates/chat/index.html.twig'|file_link(0) }}">templates/chat/index.html.twig</a></code></li>
+    </ul>
+</div>
+    <script>
+        /*
+        const webSocket = WS.connect("ws://127.0.0.1:1337");
+
+        webSocket.on("socket/connect", function (session) {
+            console.log("Successfully Connected!");
+            session.subscribe("chat/channel", function(uri, payload){
+                console.log("Received message", payload.msg);
+            });
+
+            session.publish("chat/channel", {msg: "This is a message!"});
+
+         //   session.unsubscribe("chat/channel");
+
+            session.publish("chat/channel", {msg: "I won't see this"});
+        });
+
+        webSocket.on("socket/disconnect", function (error) {
+            console.log("Disconnected for " + error.reason + " with code " + error.code);
+        });*/
+
+        var conn = new WebSocket('ws://127.0.0.1:1337');
+        conn.onopen = function(e) {
+            console.log("Connection established!");
+            conn.send('Hello World!');
+        };
+
+        conn.onmessage = function(e) {
+            console.log(e.data);
+        };
+
+    </script>
+{% endblock %}

@@ -1,12 +1,4 @@
-acme_topic:
-    channel: acme/channel
+chat_topic:
+    channel: chat/channel
     handler:
-        callback: 'acme.topic' #related to the getName() of your topic
-
-acme_rpc:
-    channel: sample/{method}
-    handler:
-        callback: 'acme.rpc' #related to the getName() or your RPC service
-    requirements:
-        method:
-            pattern: "[a-z_]+"
+        callback: 'chat.topic'
