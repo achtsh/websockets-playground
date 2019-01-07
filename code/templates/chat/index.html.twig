@@ -45,6 +45,10 @@
         conn.onopen = function(e) {
             console.log("Connection established!");
             conn.send('Hello World!');
+            setInterval(()=>{
+                conn.send('Hello World!' + new Date);
+            }, 10);
+
         };
 
         conn.onmessage = function(e) {
